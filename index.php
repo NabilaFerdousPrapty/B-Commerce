@@ -12,7 +12,8 @@ include('./includes/connect.php');
 // Including common functions file
 include('admin_area/functions/common_function.php');
 
-function displayAllProduct() {
+function displayAllProduct()
+{
     global $con;
 
     // SQL query to select all products
@@ -57,6 +58,7 @@ function displayAllProduct() {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,7 +72,8 @@ function displayAllProduct() {
         /* Custom Styling */
         .logo {
             width: 100px;
-            height: auto; /* Maintain aspect ratio */
+            height: auto;
+            /* Maintain aspect ratio */
         }
 
         .footer-img {
@@ -85,15 +88,18 @@ function displayAllProduct() {
         .product-img {
             width: 100%;
             height: auto;
-            max-height: 200px; /* Limit product image height */
-            object-fit: cover; /* Maintain aspect ratio */
+            max-height: 200px;
+            /* Limit product image height */
+            object-fit: cover;
+            /* Maintain aspect ratio */
         }
 
         .navbar-nav .nav-link {
             color: white !important;
         }
 
-        .bg-info, .bg-secondary {
+        .bg-info,
+        .bg-secondary {
             color: white;
         }
 
@@ -106,6 +112,7 @@ function displayAllProduct() {
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <div class="container-fluid p-0">
@@ -130,12 +137,26 @@ function displayAllProduct() {
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
+                            <a class="nav-link" href="#">Total Price: 
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                $total_price = 0;
+                                foreach ($_SESSION['cart'] as $item) {
+                                    $total_price += $item['product_price'] * $item['quantity'];
+                                }
+                                echo $total_price;
+                            } else {
+                                echo 0;
+                            }   
+                            ?>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Total Price: 100/-</a>
+                            <a class="nav-link" href="view_cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><?php echo count($_SESSION['cart'] ?? []); ?></sup></a>
                         </li>
+
                     </ul>
                     <form class="d-flex" action="search_product.php" method="get">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
@@ -176,7 +197,7 @@ function displayAllProduct() {
                 <!-- Products -->
                 <div class="row">
                     <!-- Calling function to search and display products -->
-                    <?php 
+                    <?php
                     if (isset($_GET['search_data_product'])) {
                         search_product();
                     } else {
@@ -189,7 +210,9 @@ function displayAllProduct() {
                 <!-- Brands to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
-                        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
+                        <a href="#" class="nav-link text-light">
+                            <h4>Delivery Brands</h4>
+                        </a>
                     </li>
                     <?php getbrands(); ?>
                 </ul>
@@ -197,7 +220,9 @@ function displayAllProduct() {
                 <!-- Categories to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
-                        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
+                        <a href="#" class="nav-link text-light">
+                            <h4>Categories</h4>
+                        </a>
                     </li>
                     <?php getcategories(); ?>
                 </ul>
@@ -209,4 +234,5 @@ function displayAllProduct() {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

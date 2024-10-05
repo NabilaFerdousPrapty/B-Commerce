@@ -2,6 +2,7 @@
 session_start();
 include('./includes/connect.php');
 
+//http://localhost/EcommerceWebsite/index.php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
