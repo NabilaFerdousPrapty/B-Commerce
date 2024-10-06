@@ -1,43 +1,39 @@
 <?php
+// Start the session
 session_start();
+
+// Display errors for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // If "Add to Cart" is pressed
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
+    $user_id = $_SESSION['user_id']; // Assuming you have user login and user_id is stored in the session
+    $quantity = 1; // Default quantity for the product
+    
+    // Include the database connection
+    include('./includes/connect.php');
+    
+    // Check if the product is already in the cart for this user
+    $query = "SELECT * FROM cart WHERE user_id = $user_id AND product_id = $product_id";
+    $result = mysqli_query($con, $query);
 
-    // Check if the cart session already exists
-    if (isset($_SESSION['cart'])) {
-        $cart = $_SESSION['cart'];
+    if (mysqli_num_rows($result) > 0) {
+        // If the product is already in the cart, update the quantity
+        $row = mysqli_fetch_assoc($result);
+        $new_quantity = $row['quantity'] + 1;
+
+        $update_query = "UPDATE cart SET quantity = $new_quantity WHERE user_id = $user_id AND product_id = $product_id";
+        mysqli_query($con, $update_query);
     } else {
-        $cart = array();
+        // If the product is not in the cart, insert it
+        $insert_query = "INSERT INTO cart (user_id, product_id, quantity) VALUES ($user_id, $product_id, $quantity)";
+        mysqli_query($con, $insert_query);
     }
 
-    // Check if the product is already in the cart
-    if (array_key_exists($product_id, $cart)) {
-        // If it is, increase the quantity by 1
-        $cart[$product_id]['quantity'] += 1;
-    } else {
-        // Fetch product details from the database
-        include('./includes/connect.php');
-        $query = "SELECT * FROM products WHERE product_id = $product_id";
-        $result = mysqli_query($con, $query);
-        $product = mysqli_fetch_assoc($result);
-
-        // Add the product to the cart session with quantity 1
-        $cart[$product_id] = array(
-            'product_id' => $product['product_id'],
-            'product_title' => $product['product_title'],
-            'product_price' => $product['product_price'],
-            'product_image' => $product['product_image1'],
-            'quantity' => 1
-        );
-    }
-
-    // Update the cart session
-    $_SESSION['cart'] = $cart;
-      $_SESSION['success_message'] = "Product added to cart successfully!";
-
-    // Redirect back to the products page or show cart
-    header('Location: products.php');
+    // Show success message and redirect back to the index page
+    $_SESSION['success_message'] = "Product added to cart successfully!";
+    header('Location: index.php');
     exit();
 }

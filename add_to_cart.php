@@ -1,10 +1,10 @@
 <?php
-// Start the session
-session_start();
-
 // Display errors for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Start the session
+session_start();
 
 // Including connect file
 include('./includes/connect.php');
@@ -12,8 +12,8 @@ include('./includes/connect.php');
 // Including common functions file
 include('admin_area/functions/common_function.php');
 
-// Function to display all products
-function displayAllProduct() {
+function displayAllProduct()
+{
     global $con;
 
     // SQL query to select all products
@@ -39,7 +39,7 @@ function displayAllProduct() {
                         <h5 class='card-title'>$product_title</h5>
                         <p class='card-text'>$product_description</p>
                         <p class='card-text mt-2'>Price: $product_price/-</p>
-                        <form action='cart.php' method='post'>
+                        <form action='cart.php' method='post' onsubmit='return showAlert(this)'>
                             <input type='hidden' name='product_id' value='$product_id'>
                             <input type='submit' name='add_to_cart' value='Add to Cart' class='btn btn-info'>
                             <a href='#' class='btn btn-secondary'>View More</a>
@@ -72,6 +72,7 @@ function displayAllProduct() {
         .logo {
             width: 100px;
             height: auto;
+            /* Maintain aspect ratio */
         }
 
         .footer-img {
@@ -87,7 +88,9 @@ function displayAllProduct() {
             width: 100%;
             height: auto;
             max-height: 200px;
+            /* Limit product image height */
             object-fit: cover;
+            /* Maintain aspect ratio */
         }
 
         .navbar-nav .nav-link {
@@ -116,9 +119,7 @@ function displayAllProduct() {
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
                 <img src="./images/logo.png" alt="Logo" class="logo footer-img">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -136,68 +137,26 @@ function displayAllProduct() {
                             <a class="nav-link" href="#">Contact</a>
                         </li>
 
-                        <!-- Display Total Price -->
-                     <!-- Total Price in Navbar -->
-<li class="nav-item">
-    <a class="nav-link" href="#">Total Price: 
-    <?php
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
-
-        // Fetch cart details for the user from the database
-        $query = "SELECT products.product_price, cart.quantity 
-                  FROM cart 
-                  JOIN products ON cart.product_id = products.product_id 
-                  WHERE cart.user_id = $user_id";
-        $result = mysqli_query($con, $query);
-
-        // Calculate total price
-        $total_price = 0;
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $product_price = $row['product_price'];
-                $quantity = $row['quantity'];
-                $total_price += $product_price * $quantity;
-            }
-        }
-        echo $total_price . ' Taka'; // Display the total price
-    } else {
-        echo '0 Taka'; // Default value when no items in the cart
-    }
-    ?>
-    </a>
-</li>
-
-
-                        <!-- Display Total Cart Items -->
                         <li class="nav-item">
-    <a class="nav-link" href="view_cart.php">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <sup>
-            <?php 
-            if (isset($_SESSION['user_id'])) {
-                $user_id = $_SESSION['user_id'];
-
-                // Query the database to count the total quantity of items in the cart
-                $query = "SELECT SUM(quantity) AS total_quantity 
-                          FROM cart 
-                          WHERE user_id = $user_id";
-                $result = mysqli_query($con, $query);
-                $row = mysqli_fetch_assoc($result);
-
-                // Display the total quantity (if the query returns a value)
-                $total_items = $row['total_quantity'] ? $row['total_quantity'] : 0;
-                echo $total_items;
-            } else {
-                echo 0; // Default value when no items in the cart
-            }
-            ?>
-        </sup>
-    </a>
-</li>
+                            <a class="nav-link" href="#">Total Price: 
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                $total_price = 0;
+                                foreach ($_SESSION['cart'] as $item) {
+                                    $total_price += $item['product_price'] * $item['quantity'];
+                                }
+                                echo $total_price;
+                            } else {
+                                echo 0;
+                            }   
+                            ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="view_cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><?php echo count($_SESSION['cart'] ?? []); ?></sup></a>
+                        </li>
 
                     </ul>
-
                     <form class="d-flex" action="search_product.php" method="get">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
                         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
@@ -205,7 +164,6 @@ function displayAllProduct() {
                 </div>
             </div>
         </nav>
-
         <!-- Second Child -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
@@ -269,11 +227,13 @@ function displayAllProduct() {
                 </ul>
             </div>
         </div>
+        <!-- Footer -->
+        <div class="bg-info text-center p-3">
+            <h4>Hidden Store</h4>
+            <p>All Rights Reserved © 2024</p>
+        </div>
     </div>
-
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
