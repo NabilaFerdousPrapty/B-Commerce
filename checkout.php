@@ -51,6 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $delivery_date = date('Y-m-d', strtotime('+5 days')); // Minimum delivery date
         $max_delivery_date = date('Y-m-d', strtotime('+7 days')); // Maximum delivery date
 
+        // Empty the cart by deleting all items in the user's cart
+        $delete_cart_query = "DELETE FROM cart WHERE user_id = $user_id";
+        mysqli_query($con, $delete_cart_query);
+
         // Start of HTML design structure
         echo "
         <!DOCTYPE html>
