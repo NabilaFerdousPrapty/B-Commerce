@@ -524,7 +524,8 @@ function displayAllProduct()
                                 <p class="font-medium text-gray-500 text-uppercase">Free</p>
                                 <h2 class="card-title text-4xl font-semibold text-gray-800">$0</h2>
                                 <p class="font-medium text-gray-500">Life time</p>
-                                <button class="btn btn-primary w-100 mt-4">Start Now</button>
+                                <button class="btn btn-primary w-100 mt-4" data-bs-toggle="modal"
+                                    data-bs-target="#paymentModal" data-plan="free">Start Now</button>
                             </div>
                         </div>
                     </div>
@@ -536,7 +537,8 @@ function displayAllProduct()
                                 <p class="font-medium text-uppercase">Premium</p>
                                 <h2 class="card-title text-5xl font-bold">$40</h2>
                                 <p class="font-medium">Per month</p>
-                                <button class="btn btn-light w-100 mt-4">Start Now</button>
+                                <button class="btn btn-light w-100 mt-4" data-bs-toggle="modal"
+                                    data-bs-target="#paymentModal" data-plan="premium">Start Now</button>
                             </div>
                         </div>
                     </div>
@@ -548,13 +550,134 @@ function displayAllProduct()
                                 <p class="font-medium text-gray-500 text-uppercase">Enterprise</p>
                                 <h2 class="card-title text-4xl font-semibold text-gray-800">$100</h2>
                                 <p class="font-medium text-gray-500">Life time</p>
-                                <button class="btn btn-primary w-100 mt-4">Start Now</button>
+                                <button class="btn btn-primary w-100 mt-4" data-bs-toggle="modal"
+                                    data-bs-target="#paymentModal" data-plan="enterprise">Start Now</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Payment Modal -->
+        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel">Payment Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="payment-form">
+                            <div class="mb-3">
+                                <label for="card-element" class="form-label">Card details</label>
+                                <div id="card-element"></div>
+                                <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="plan" class="form-label">Selected Plan: </label>
+                                <span id="selected-plan"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Pay Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include Stripe.js -->
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            // Initialize Stripe
+            var stripe = Stripe(
+                'pk_test_51PMqy0RvxQOIzmuHOlsUy1frX456WLEKO7kRSWYqp2CptvO4xaxGSI9lFKN9FYtJ7GTVx1s4b5HDTncWr9hPJYZC00vamyHu4S'
+            ); // Replace with your actual public key
+            var elements = stripe.elements();
+
+            // Create an instance of the card Element
+            var card = elements.create('card');
+            card.mount('#card-element');
+
+            // Show selected plan in the modal when button is clicked
+            var selectedPlanElement = document.getElementById('selected-plan');
+            var planButtons = document.querySelectorAll('[data-plan]');
+
+            planButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var plan = button.getAttribute('data-plan');
+                    selectedPlanElement.textContent = plan.charAt(0).toUpperCase() + plan.slice(1) +
+                        ' Plan';
+                });
+            });
+
+
+            var paymentForm = document.getElementById('payment-form');
+            paymentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get the payment method
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                }).then(function(result) {
+                    if (result.error) {
+                        // Handle error here
+                        alert(result.error.message);
+                    } else {
+                        // Send the payment method id to your server for further processing
+                        // You'll need to handle the payment on the server side with your backend
+                        var paymentMethodId = result.paymentMethod.id;
+
+                        // Example of sending payment method to server
+                        // Send the payment method id to your server for further processing
+                        fetch('/payment.php', {
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    payment_method_id: paymentMethodId,
+                                    plan: plan // Send the selected plan if necessary
+                                }),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Check if payment was successful and show corresponding alert
+                                let alertHTML = '';
+                                if (data.success) {
+                                    // Show success alert using Bootstrap
+                                    alertHTML = `
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Payment Successful!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`;
+                                } else {
+                                    // Show error alert using Bootstrap
+                                    alertHTML = `
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                ${data.message || 'Payment failed. Please try again.'}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`;
+                                }
+                                // Insert the alert at the beginning of the page (or wherever you prefer)
+                                document.body.insertAdjacentHTML('afterbegin', alertHTML);
+                            })
+                            .catch(error => {
+                                // Show error alert using Bootstrap if there is a problem with the fetch request
+                                const errorAlertHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Error: ${error.message || 'Something went wrong with the payment request.'}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+                                // Insert the alert at the beginning of the page (or wherever you prefer)
+                                document.body.insertAdjacentHTML('afterbegin', errorAlertHTML);
+                            });
+
+                    }
+                });
+            });
+        </script>
+
 
         <div class="container my-5">
             <h2 class="text-center mb-4">Frequently Asked Questions</h2>
