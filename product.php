@@ -12,7 +12,6 @@ include('./includes/connect.php');
 // Including common functions file
 include('admin_area/functions/common_function.php');
 
-
 // Function to display all products
 function displayAllProduct()
 {
@@ -214,65 +213,6 @@ function displayAllProduct()
             display: inline-block;
         }
 
-        .accordion-button {
-            background-color: #0077b6;
-            color: white;
-            font-weight: bold;
-            border-radius: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .accordion-button:not(.collapsed) {
-            background-color: #00b4d8;
-            color: white;
-        }
-
-        .accordion-button:hover {
-            background-color: #00b4d8;
-            color: white;
-        }
-
-        .accordion-body {
-            font-size: 1.1rem;
-            color: #555;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-top: 2px solid #ddd;
-            border-radius: 10px;
-        }
-
-        .accordion-item {
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .accordion-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .accordion-header {
-            background-color: #fff;
-            border-bottom: 2px solid #ddd;
-        }
-
-        .accordion-body a {
-            color: #0077b6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .accordion-body a:hover {
-            text-decoration: underline;
-        }
-
-        .container h2 {
-            font-size: 2.2rem;
-            color: #333;
-            font-weight: bold;
-        }
-
         /* Underline effect */
         .hidden-store-title::after {
             content: '';
@@ -322,11 +262,11 @@ function displayAllProduct()
     <div class="container-fluid p-0">
         <!-- First Child -->
         <!-- Main Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-info bg-gradient">
+        <nav class="navbar navbar-expand-lg navbar-light bg-info bg-gradient">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a href="/" class="">
-                    <img src="./images/logo.png" alt="Logo" class="logo ">
+                <a href="/" class="navbar-brand">
+                    <img src="./images/logo.png" alt="Logo" class="logo footer-img">
                 </a>
 
                 <!-- Toggle Button for Mobile -->
@@ -339,7 +279,7 @@ function displayAllProduct()
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/EcommerceWebsite">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="product.php">Products</a>
@@ -441,218 +381,57 @@ function displayAllProduct()
             </div>
         </nav>
 
-        <div class="py-5">
-            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://i.ibb.co/ZfMqgBX/smiling-young-two-girls-sitting-floor-shopping-bags-gift-open-pizza-turquoise-wall.jpg"
-                            class="d-block w-100 rounded-image" alt="Shopping image 1">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Shop the Latest Trends</h5>
-                            <p>Discover our newest collection!</p>
-                            <a href="#" class="btn btn-info">Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://img.freepik.com/premium-photo/portrait-two-excited-young-woman-hand-holding-shopping-bag-isolated-blue-wall_231208-11826.jpg"
-                            class="d-block w-100 rounded-image" alt="Shopping image 2">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Exciting Offers</h5>
-                            <p>Get the best deals on your favorite items.</p>
-                            <a href="#" class="btn btn-info">Explore Offers</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://img.freepik.com/premium-photo/portrait-nice-cute-girls-embracing-holding-hands-carrying-new-cool-purchase-isolated-yellow-wall_231208-11816.jpg"
-                            class="d-block w-100 rounded-image" alt="Shopping image 3">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>New Arrivals</h5>
-                            <p>Fresh styles and trending looks.</p>
-                            <a href="#" class="btn btn-info">See New Arrivals</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
+
 
         <!-- Third Child -->
         <div class="bg-light">
             <div class="container text-center">
                 <h3 class="hidden-store-title">
-                    Welcome to Our Store
+                    Our Products
                 </h3>
                 <p class="hidden-store-description">
-                    We offer a wide range of products to suit your needs. From food to fashion, we have it all!
+                    Check out our latest products and find the best deals on everything you need for your home.
                 </p>
-                <a href="product.php" class="btn btn-primary mt-3">Explore Our Products</a>
             </div>
 
         </div>
         <!-- Fourth Child -->
-        <div class="bg-white py-8">
-            <div class="container px-6 py-8 mx-auto">
-                <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl">Pricing Plan</h1>
-
-                <p class="max-w-2xl mx-auto mt-4 text-center text-gray-500 xl:mt-6">
-                    Choose the plan that works best for you. Whether you're just starting out or looking to scale your
-                    business, we have a plan that fits your needs.
-                </p>
-
-                <div class="row mt-6">
-                    <!-- Free Plan -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card border border-gray-200 rounded-lg shadow-sm text-center">
-                            <div class="card-body">
-                                <p class="font-medium text-gray-500 text-uppercase">Free</p>
-                                <h2 class="card-title text-4xl font-semibold text-gray-800">$0</h2>
-                                <p class="font-medium text-gray-500">Life time</p>
-                                <button class="btn btn-primary w-100 mt-4">Start Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Premium Plan -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card text-white bg-primary rounded-lg text-center">
-                            <div class="card-body">
-                                <p class="font-medium text-uppercase">Premium</p>
-                                <h2 class="card-title text-5xl font-bold">$40</h2>
-                                <p class="font-medium">Per month</p>
-                                <button class="btn btn-light w-100 mt-4">Start Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Enterprise Plan -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card border border-gray-200 rounded-lg shadow-sm text-center">
-                            <div class="card-body">
-                                <p class="font-medium text-gray-500 text-uppercase">Enterprise</p>
-                                <h2 class="card-title text-4xl font-semibold text-gray-800">$100</h2>
-                                <p class="font-medium text-gray-500">Life time</p>
-                                <button class="btn btn-primary w-100 mt-4">Start Now</button>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row px-1">
+            <div class="col-md-10">
+                <!-- Products -->
+                <div class="row">
+                    <!-- Calling function to search and display products -->
+                    <?php
+                    if (isset($_GET['search_data_product'])) {
+                        search_product();
+                    } else {
+                        displayAllProduct();
+                    }
+                    ?>
                 </div>
             </div>
-        </div>
+            <div class="col-md-2 bg-secondary p-0">
+                <!-- Brands to be displayed -->
+                <ul class="navbar-nav me-auto text-center">
+                    <li class="nav-item bg-info">
+                        <a href="#" class="nav-link text-light">
+                            <h4>Delivery Brands</h4>
+                        </a>
+                    </li>
+                    <?php getbrands(); ?>
+                </ul>
 
-        <div class="container my-5">
-            <h2 class="text-center mb-4">Frequently Asked Questions</h2>
-
-            <div class="accordion" id="accordionFAQ">
-                <!-- FAQ 1 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            What services do you offer?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            We offer a wide range of services, including web development, mobile application
-                            development, UI/UX design, and software consulting. Our focus is to provide tailored
-                            solutions to help businesses succeed online.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            How can I get in touch with you?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            You can contact us via our <a href="contact.php" class="text-decoration-none">Contact Us</a>
-                            page, where you'll find a contact form to send us a message. Alternatively, you can reach us
-                            through our social media profiles or via email.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            What is the estimated timeline for project delivery?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            The timeline for delivery depends on the scope and complexity of the project. Typically, for
-                            a standard website or mobile application, it takes 4 to 6 weeks. We provide a detaileto
-                            timeline and milestones once we understand the project requirements.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ 4 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Do you provide ongoing support after the project is completed?
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            Yes, we offer ongoing support and maintenance services after the completion of your project.
-                            We can assist with updates, bug fixes, and any new features that you may require.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ 5 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Can you work with an existing website or app?
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            Absolutely! We can work with your existing website or app to improve its design,
-                            functionality, and performance. Whether you need a redesign, feature updates, or bug fixes,
-                            we are here to help.
-                        </div>
-                    </div>
-                </div>
+                <!-- Categories to be displayed -->
+                <ul class="navbar-nav me-auto text-center">
+                    <li class="nav-item bg-info">
+                        <a href="#" class="nav-link text-light">
+                            <h4>Categories</h4>
+                        </a>
+                    </li>
+                    <?php getcategories(); ?>
+                </ul>
             </div>
         </div>
-        <?php include './footer.php' ?>
-
-
     </div>
     <script>
         // Initialize Bootstrap tooltips
