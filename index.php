@@ -590,7 +590,7 @@ function displayAllProduct()
         <script>
             // Initialize Stripe
             var stripe = Stripe(
-                'pk_test_51PMqy0RvxQOIzmuHOlsUy1frX456WLEKO7kRSWYqp2CptvO4xaxGSI9lFKN9FYtJ7GTVx1s4b5HDTncWr9hPJYZC00vamyHu4S'
+                ''
             ); // Replace with your actual public key
             var elements = stripe.elements();
 

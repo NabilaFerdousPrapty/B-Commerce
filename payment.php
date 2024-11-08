@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 
 // Set your secret key (you can find it in your Stripe Dashboard)
-\Stripe\Stripe::setApiKey('sk_test_51PMqy0RvxQOIzmuHOlsUy1frX456WLEKO7kRSWYqp2CptvO4xaxGSI9lFKN9FYtJ7GTVx1s4b5HDTncWr9hPJYZC00vamyHu4S'); // Replace with your actual secret key
+\Stripe\Stripe::setApiKey(''); // Replace with your actual secret key
 
 // Get the JSON data from the incoming request
 $input = json_decode(file_get_contents('php://input'), true);
