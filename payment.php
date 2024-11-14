@@ -1,64 +1,55 @@
 <?php
-// Include the Stripe PHP library
 require 'vendor/autoload.php';
 
-// Set your secret key (you can find it in your Stripe Dashboard)
-\Stripe\Stripe::setApiKey(''); // Replace with your actual secret key
+// Enable error reporting
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-// Get the JSON data from the incoming request
+// Set Stripe API key
+\Stripe\Stripe::setApiKey(''); // Replace with your secret key
+
+// Set the correct header for JSON response
+header('Content-Type: application/json');
+
+// Get payment details from the request
 $input = json_decode(file_get_contents('php://input'), true);
+$paymentMethodId = $input['payment_method_id'] ?? null;
+$amount = $input['amount'] ?? null; // Amount in cents
 
-// Check if payment_method_id and plan are set in the request
-if (!isset($input['payment_method_id']) || !isset($input['plan'])) {
-    // Return an error if payment_method_id or plan is missing
-    echo json_encode(['success' => false, 'message' => 'Missing required parameters']);
-    exit;
+// Validate the input data
+if (!$paymentMethodId || !$amount) {
+    echo json_encode(['success' => false, 'message' => 'Invalid request data']);
+    exit();
 }
 
-$payment_method_id = $input['payment_method_id'];
-$plan = $input['plan']; // Optionally, handle the selected plan
-
-// Determine the amount based on the selected plan
-$amount = 0;
-
-switch ($plan) {
-    case 'free':
-        $amount = 0; // Free plan, no charge
-        break;
-    case 'premium':
-        $amount = 4000; // Premium plan $40, Stripe requires amount in cents
-        break;
-    case 'enterprise':
-        $amount = 10000; // Enterprise plan $100, Stripe requires amount in cents
-        break;
-    default:
-        echo json_encode(['success' => false, 'message' => 'Invalid plan']);
-        exit;
-}
-
-// Create the payment intent using Stripe API
 try {
-    // Create the PaymentIntent
+    // Create a PaymentIntent with amount and currency
     $paymentIntent = \Stripe\PaymentIntent::create([
         'amount' => $amount,
         'currency' => 'usd',
-        'payment_method' => $payment_method_id,
+        'payment_method' => $paymentMethodId,
         'confirmation_method' => 'manual',
         'confirm' => true,
     ]);
 
-    // Check if the payment was successful
-    if ($paymentIntent->status == 'succeeded') {
-        // Payment was successful, return success response
-        echo json_encode(['success' => true, 'message' => 'Payment successful']);
-    } else {
-        // Payment failed, return error response
-        echo json_encode(['success' => false, 'message' => 'Payment failed']);
+    // Use a switch to handle different payment statuses
+    switch ($paymentIntent->status) {
+        case 'succeeded':
+            echo json_encode(['success' => true, 'message' => 'Payment successful']);
+            break;
+
+        case 'requires_action':
+            echo json_encode(['success' => false, 'message' => 'Payment requires additional action']);
+            break;
+
+        case 'requires_payment_method':
+            echo json_encode(['success' => false, 'message' => 'Payment failed: Requires a valid payment method']);
+            break;
+
+        default:
+            echo json_encode(['success' => false, 'message' => 'Payment status unknown']);
+            break;
     }
 } catch (\Stripe\Exception\ApiErrorException $e) {
-    // Handle Stripe API error
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
-} catch (Exception $e) {
-    // Handle other errors
-    echo json_encode(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()]);
+    echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
 }

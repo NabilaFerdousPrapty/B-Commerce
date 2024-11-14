@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,80 +8,83 @@
     <title>Admin Dashboard</title>
 
     <!-- Bootstrap CSS link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Font Awesome link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Custom CSS -->
-    <!-- <link rel="stylesheet" href="../style.css"> -->
     <style>
-        .admin_image {
-            width: 100px; /* Adjust as needed */
-            height: auto; /* Maintain aspect ratio */
-            object-fit: contain;
-        }
-        .logo {
-            width: 50px; /* Adjust as needed */
-            height: auto; /* Maintain aspect ratio */
-        }
+    .admin_image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .logo {
+        width: 40px;
+        height: auto;
+    }
+
+    .button a {
+        font-size: 0.9rem;
+        padding: 10px;
+        margin: 5px 0;
+        display: block;
+    }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
-    <div class="container-fluid p-0 nn">
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
-            <div class="container-fluid">
-                <img src="../images/logo.jpg" alt="" class="logo">
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info py-3">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <a href="#"><img src="../images/logo.jpg" alt="Logo" class="logo"></a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Welcome Guest</a>
+                        <a href="#" class="nav-link text-white">Welcome, Admin</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
         <!-- Manage Details Section -->
-        <div class="bg-light">
-            <h3 class="text-center p-2">Manage Details</h3>
+        <div class="bg-light py-2">
+            <h3 class="text-center p-3">Manage Details</h3>
         </div>
 
         <!-- Admin Profile Section -->
         <div class="row">
-            <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
-                <div class="p-3">
-                    <a href="#"><img src="../images/pineapple.jpg" alt="" class="admin_image"></a>
-                    <p class="text-light text-center">Admin Name</p>
-                </div>
-                <div class="button text-center">
-                    <button class="my-3"><a href="insert_product.php" class="nav-link text-light bg-info my-1">Insert Products</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">View Products</a></button>
-                    <button><a href="index.php?insert_category" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">View Categories</a></button>
-                    <button><a href="index.php?insert_brand" class="nav-link text-light bg-info my-1">Insert Brands</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">View Brands</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">All Orders</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">All Payments</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">List Users</a></button>
-                    <button><a href="#" class="nav-link text-light bg-info my-1">Layout</a></button>
+            <div class="col-md-12 bg-secondary p-4 d-flex flex-column align-items-center text-center text-white">
+                <img src="../images/pineapple.jpg" alt="Admin" class="admin_image mb-2">
+                <h4>Admin Name</h4>
+                <div class="button m-4 d-flex gap-4 w-300">
+                    <a href="insert_product.php" class="btn btn-info text-white mb-2">Insert Products</a>
+                    <a href="../product.php" class="btn btn-info text-white mb-2">View Products</a>
+                    <a href="insert_categories.php" class="btn btn-info text-white mb-2">Insert Categories</a>
+                    <a href="#" class="btn btn-info text-white mb-2">View Categories</a>
+                    <a href="insert_brands.php" class="btn btn-info text-white mb-2">Insert Brands</a>
+                    <a href="#" class="btn btn-info text-white mb-2">View Brands</a>
+                    <a href="#" class="btn btn-info text-white mb-2">All Orders</a>
+                    <a href="#" class="btn btn-info text-white mb-2">All Payments</a>
+                    <a href="#" class="btn btn-info text-white mb-2">List Users</a>
+                    <a href="#" class="btn btn-warning text-dark mb-2">Layout</a>
                 </div>
             </div>
+
+            <!-- Content Section -->
+
         </div>
     </div>
 
-    <!-- Content Section -->
-    <div class="container my-3">
-        <?php
-        if(isset($_GET['insert_category'])){
-            include('insert_categories.php');
-        }
-        if(isset($_GET['insert_brand'])){
-            include('insert_brands.php');
-        }
-        ?>
-    </div>
-
     <!-- Bootstrap JS link -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6"></script>
 </body>
+
 </html>

@@ -71,249 +71,249 @@ function displayAllProduct()
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     <style>
-        /* Custom Styling */
-        .logo {
-            height: 80px;
-            /* Adjust the logo size */
-            width: auto;
-        }
+    /* Custom Styling */
+    .logo {
+        height: 80px;
+        /* Adjust the logo size */
+        width: auto;
+    }
 
-        .footer-img {
-            max-width: 100%;
-            height: auto;
-        }
+    .footer-img {
+        max-width: 100%;
+        height: auto;
+    }
 
-        .product-card {
-            margin-bottom: 20px;
-        }
+    .product-card {
+        margin-bottom: 20px;
+    }
 
-        .product-img {
-            width: 80%;
-            height: auto;
-            max-height: 200px;
-            object-fit: cover;
+    .product-img {
+        width: 80%;
+        height: auto;
+        max-height: 200px;
+        object-fit: cover;
 
-        }
+    }
 
-        /* Main Navbar - Align Links to the Center */
-        .navbar-nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-left: 0;
-        }
+    /* Main Navbar - Align Links to the Center */
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-left: 0;
+    }
 
-        /* Adjust padding in the navbar for less spacing */
-        .navbar-light .navbar-nav .nav-link {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
+    /* Adjust padding in the navbar for less spacing */
+    .navbar-light .navbar-nav .nav-link {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-        /* Adjust logo size and make sure it looks good */
-        .logo {
-            height: 40px;
-            /* Adjust the logo size */
-            width: auto;
-        }
+    /* Adjust logo size and make sure it looks good */
+    .logo {
+        height: 40px;
+        /* Adjust the logo size */
+        width: auto;
+    }
 
-        /* Search input and button */
-        .form-control {
-            width: 200px;
-            /* Adjust search box width */
-        }
+    /* Search input and button */
+    .form-control {
+        width: 200px;
+        /* Adjust search box width */
+    }
 
-        /* Second Navbar - Align links to the center */
-        .navbar-dark .navbar-nav {
-            justify-content: center;
-            width: 100%;
-        }
+    /* Second Navbar - Align links to the center */
+    .navbar-dark .navbar-nav {
+        justify-content: center;
+        width: 100%;
+    }
 
-        /* Make the navbar more compact */
-        .navbar {
-            padding: 10px 0;
-            /* Reduce vertical padding */
-        }
+    /* Make the navbar more compact */
+    .navbar {
+        padding: 10px 0;
+        /* Reduce vertical padding */
+    }
 
-        /* Navbar links when hovered */
-        .nav-link:hover {
-            color: #ff6347;
-            /* Change link color on hover */
-        }
+    /* Navbar links when hovered */
+    .nav-link:hover {
+        color: #ff6347;
+        /* Change link color on hover */
+    }
 
-        /* Navbar items active state */
-        .nav-link.active {
-            color: #fff;
-            font-weight: bold;
-        }
+    /* Navbar items active state */
+    .nav-link.active {
+        color: #fff;
+        font-weight: bold;
+    }
 
 
-        .navbar-nav .nav-link {
-            color: white !important;
-        }
+    .navbar-nav .nav-link {
+        color: white !important;
+    }
 
-        .bg-info,
-        .bg-secondary {
-            color: white;
-        }
+    .bg-info,
+    .bg-secondary {
+        color: white;
+    }
 
-        .navbar-toggler {
-            border-color: white;
-        }
+    .navbar-toggler {
+        border-color: white;
+    }
 
-        .navbar-toggler-icon {
-            background-color: white;
-        }
+    .navbar-toggler-icon {
+        background-color: white;
+    }
 
-        .rounded-image {
-            max-width: 80%;
-            /* Adjust as needed for your layout */
-            border-radius: 15px;
-            /* Rounded corners */
-            margin: auto;
-            /* Center align if not taking full width */
-        }
+    .rounded-image {
+        max-width: 80%;
+        /* Adjust as needed for your layout */
+        border-radius: 15px;
+        /* Rounded corners */
+        margin: auto;
+        /* Center align if not taking full width */
+    }
 
-        /* Adjust the caption text and button */
-        .carousel-caption h5 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
+    /* Adjust the caption text and button */
+    .carousel-caption h5 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+    }
 
-        .carousel-caption p {
-            color: white;
-        }
+    .carousel-caption p {
+        color: white;
+    }
 
-        .carousel-caption .btn-info {
-            background-color: #17a2b8;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+    .carousel-caption .btn-info {
+        background-color: #17a2b8;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+    }
 
-        /* Container */
-        .container {
-            padding: 50px 20px;
-        }
+    /* Container */
+    .container {
+        padding: 50px 20px;
+    }
 
-        /* Title styling */
+    /* Title styling */
+    .hidden-store-title {
+        font-size: 2.5rem;
+        /* Large font size */
+        font-weight: 700;
+        /* Bold */
+        color: #333;
+        /* Dark color for the title */
+        text-transform: uppercase;
+        /* Uppercase letters */
+        letter-spacing: 2px;
+        /* Spacing between letters */
+        margin-bottom: 20px;
+        /* Spacing below the title */
+        position: relative;
+        display: inline-block;
+    }
+
+    .accordion-button {
+        background-color: #0077b6;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #00b4d8;
+        color: white;
+    }
+
+    .accordion-button:hover {
+        background-color: #00b4d8;
+        color: white;
+    }
+
+    .accordion-body {
+        font-size: 1.1rem;
+        color: #555;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-top: 2px solid #ddd;
+        border-radius: 10px;
+    }
+
+    .accordion-item {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .accordion-header {
+        background-color: #fff;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .accordion-body a {
+        color: #0077b6;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .accordion-body a:hover {
+        text-decoration: underline;
+    }
+
+    .container h2 {
+        font-size: 2.2rem;
+        color: #333;
+        font-weight: bold;
+    }
+
+    /* Underline effect */
+    .hidden-store-title::after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 4px;
+        background-color: #ff6347;
+        /* Bright color for underline */
+        bottom: -5px;
+        left: 25%;
+    }
+
+    /* Description text styling */
+    .hidden-store-description {
+        font-size: 1.2rem;
+        /* Medium font size */
+        color: #555;
+        /* Lighter color for the description */
+        font-style: italic;
+        /* Italic style */
+        max-width: 700px;
+        /* Limiting the width for better readability */
+        margin: 0 auto;
+        /* Centering the paragraph */
+        line-height: 1.6;
+        /* Adding spacing between lines */
+        letter-spacing: 1px;
+    }
+
+    /* Responsive design: Adjust font size for smaller screens */
+    @media (max-width: 600px) {
         .hidden-store-title {
-            font-size: 2.5rem;
-            /* Large font size */
-            font-weight: 700;
-            /* Bold */
-            color: #333;
-            /* Dark color for the title */
-            text-transform: uppercase;
-            /* Uppercase letters */
-            letter-spacing: 2px;
-            /* Spacing between letters */
-            margin-bottom: 20px;
-            /* Spacing below the title */
-            position: relative;
-            display: inline-block;
+            font-size: 2rem;
+            /* Smaller font size for mobile */
         }
 
-        .accordion-button {
-            background-color: #0077b6;
-            color: white;
-            font-weight: bold;
-            border-radius: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .accordion-button:not(.collapsed) {
-            background-color: #00b4d8;
-            color: white;
-        }
-
-        .accordion-button:hover {
-            background-color: #00b4d8;
-            color: white;
-        }
-
-        .accordion-body {
-            font-size: 1.1rem;
-            color: #555;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-top: 2px solid #ddd;
-            border-radius: 10px;
-        }
-
-        .accordion-item {
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .accordion-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .accordion-header {
-            background-color: #fff;
-            border-bottom: 2px solid #ddd;
-        }
-
-        .accordion-body a {
-            color: #0077b6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .accordion-body a:hover {
-            text-decoration: underline;
-        }
-
-        .container h2 {
-            font-size: 2.2rem;
-            color: #333;
-            font-weight: bold;
-        }
-
-        /* Underline effect */
-        .hidden-store-title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 4px;
-            background-color: #ff6347;
-            /* Bright color for underline */
-            bottom: -5px;
-            left: 25%;
-        }
-
-        /* Description text styling */
         .hidden-store-description {
-            font-size: 1.2rem;
-            /* Medium font size */
-            color: #555;
-            /* Lighter color for the description */
-            font-style: italic;
-            /* Italic style */
-            max-width: 700px;
-            /* Limiting the width for better readability */
-            margin: 0 auto;
-            /* Centering the paragraph */
-            line-height: 1.6;
-            /* Adding spacing between lines */
-            letter-spacing: 1px;
+            font-size: 1rem;
+            /* Adjust description size */
         }
-
-        /* Responsive design: Adjust font size for smaller screens */
-        @media (max-width: 600px) {
-            .hidden-store-title {
-                font-size: 2rem;
-                /* Smaller font size for mobile */
-            }
-
-            .hidden-store-description {
-                font-size: 1rem;
-                /* Adjust description size */
-            }
-        }
+    }
     </style>
 </head>
 
@@ -401,27 +401,27 @@ function displayAllProduct()
                             </a>
                         </li>
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <li class="nav-item">
-                                <!-- Show User Icon if Logged In -->
-                                <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Welcome: <?php echo $_SESSION['email']; ?>">
-                                    <i class="fa-solid fa-user"></i> <!-- User Icon -->
-                                </a>
+                        <li class="nav-item">
+                            <!-- Show User Icon if Logged In -->
+                            <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Welcome: <?php echo $_SESSION['email']; ?>">
+                                <i class="fa-solid fa-user"></i> <!-- User Icon -->
+                            </a>
 
 
-                            </li>
-                            <li class="nav-item">
-                                <!-- Logout Button -->
-                                <a class="nav-link btn btn-danger" href="logout.php">Logout</a>
-                            </li>
+                        </li>
+                        <li class="nav-item">
+                            <!-- Logout Button -->
+                            <a class="nav-link btn btn-danger" href="logout.php">Logout</a>
+                        </li>
 
                         <?php else: ?>
 
 
-                            <a class="nav-link btn btn-success"" href=" login.php">Login</>
+                        <a class="nav-link btn btn-success"" href=" login.php">Login</>
 
 
-                                <a class="nav-link btn btn-danger" href="register.php">Register</a>
+                            <a class="nav-link btn btn-danger" href="register.php">Register</a>
 
                             <?php endif; ?>
                     </ul>
@@ -588,95 +588,109 @@ function displayAllProduct()
         <!-- Include Stripe.js -->
         <script src="https://js.stripe.com/v3/"></script>
         <script>
-            // Initialize Stripe
-            var stripe = Stripe(
-                ''
-            ); // Replace with your actual public key
-            var elements = stripe.elements();
+        // Initialize Stripe
+        var stripe = Stripe(
+            ''
+        ); // Replace with your actual public key
+        var elements = stripe.elements();
 
-            // Create an instance of the card Element
-            var card = elements.create('card');
-            card.mount('#card-element');
+        // Create an instance of the card Element
+        var card = elements.create('card');
+        card.mount('#card-element');
 
-            // Show selected plan in the modal when button is clicked
-            var selectedPlanElement = document.getElementById('selected-plan');
-            var planButtons = document.querySelectorAll('[data-plan]');
+        // Store selected plan and amount globally
+        var selectedPlan = '';
+        var amount = 0; // Store the amount to be charged
 
-            planButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var plan = button.getAttribute('data-plan');
-                    selectedPlanElement.textContent = plan.charAt(0).toUpperCase() + plan.slice(1) +
-                        ' Plan';
-                });
+        // Show selected plan in the modal when button is clicked
+        var selectedPlanElement = document.getElementById('selected-plan');
+        var planButtons = document.querySelectorAll('[data-plan]');
+
+        planButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                selectedPlan = button.getAttribute('data-plan');
+                selectedPlanElement.textContent = selectedPlan.charAt(0).toUpperCase() + selectedPlan
+                    .slice(1) + ' Plan';
+
+                // Set the amount based on the selected plan
+                if (selectedPlan === 'basic') {
+                    amount = 5000; // Example: 5000 cents = 50 USD
+                } else if (selectedPlan === 'premium') {
+                    amount = 10000; // Example: 10000 cents = 100 USD
+                }
             });
+        });
 
+        var paymentForm = document.getElementById('payment-form');
+        paymentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            var paymentForm = document.getElementById('payment-form');
-            paymentForm.addEventListener('submit', function(event) {
-                event.preventDefault();
+            // Get the payment method
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: card,
+            }).then(function(result) {
+                if (result.error) {
+                    // Handle error here
+                    alert(result.error.message);
+                } else {
+                    // Send the payment method ID and selected plan to the server
+                    fetch('payment.php', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                payment_method_id: result.paymentMethod.id,
+                                plan: selectedPlan // Send the selected plan to the server
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            // Check if response is valid JSON
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Check if payment was successful and show corresponding alert
+                            let alertHTML = '';
+                            if (data.success) {
+                                // Show success alert using Bootstrap
+                                alertHTML = `
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Payment Successful!
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`;
+                            } else {
+                                // Show error alert using Bootstrap
+                                alertHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                ${data.message || 'Payment failed. Please try again.'}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`;
+                            }
+                            // Insert the alert at the beginning of the page (or wherever you prefer)
+                            document.body.insertAdjacentHTML('afterbegin', alertHTML);
+                        })
+                        .catch(error => {
+                            // Show error alert using Bootstrap if there is a problem with the fetch request
+                            console.log(error);
 
-                // Get the payment method
-                stripe.createPaymentMethod({
-                    type: 'card',
-                    card: card,
-                }).then(function(result) {
-                    if (result.error) {
-                        // Handle error here
-                        alert(result.error.message);
-                    } else {
-                        // Send the payment method id to your server for further processing
-                        // You'll need to handle the payment on the server side with your backend
-                        var paymentMethodId = result.paymentMethod.id;
-
-                        // Example of sending payment method to server
-                        // Send the payment method id to your server for further processing
-                        fetch('/payment.php', {
-                                method: 'POST',
-                                body: JSON.stringify({
-                                    payment_method_id: paymentMethodId,
-                                    plan: plan // Send the selected plan if necessary
-                                }),
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                // Check if payment was successful and show corresponding alert
-                                let alertHTML = '';
-                                if (data.success) {
-                                    // Show success alert using Bootstrap
-                                    alertHTML = `
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Payment Successful!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>`;
-                                } else {
-                                    // Show error alert using Bootstrap
-                                    alertHTML = `
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                ${data.message || 'Payment failed. Please try again.'}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>`;
-                                }
-                                // Insert the alert at the beginning of the page (or wherever you prefer)
-                                document.body.insertAdjacentHTML('afterbegin', alertHTML);
-                            })
-                            .catch(error => {
-                                // Show error alert using Bootstrap if there is a problem with the fetch request
-                                const errorAlertHTML = `
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Error: ${error.message || 'Something went wrong with the payment request.'}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>`;
-                                // Insert the alert at the beginning of the page (or wherever you prefer)
-                                document.body.insertAdjacentHTML('afterbegin', errorAlertHTML);
-                            });
-
-                    }
-                });
+                            const errorAlertHTML = `
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error: ${error.message || 'Something went wrong with the payment request.'}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>`;
+                            // Insert the alert at the beginning of the page (or wherever you prefer)
+                            document.body.insertAdjacentHTML('afterbegin', errorAlertHTML);
+                        });
+                }
             });
+        });
         </script>
+
+
+
+
+
 
 
         <div class="container my-5">
@@ -778,9 +792,9 @@ function displayAllProduct()
 
     </div>
     <script>
-        // Initialize Bootstrap tooltips
-        var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    // Initialize Bootstrap tooltips
+    var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     </script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
